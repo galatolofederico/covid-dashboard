@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>COVID-19 Italy Dashboard</title>
+  </head>
+  <body>
+    <nav id="navbar" class="navbar navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">COVID-19 Italia</a>
+      <button id="infoButton" class="btn btn-info" type="button">
+        <i class="fas fa-question-circle"></i>
+      </button>
+       
+      <div class="dropdown">
+        <button id="dropdownCurrent" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </button>
+        <div id="dropdownMenu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      
+      <div class="row" id="alert-container">
+        <div class="col-8">  
+          <div id="alert" class="alert alert-primary alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading text-center">covid-dashboard</h4>
+            <p>Dashboard per la visualizzazione dei dati relativi all'epidemia di COVID-19 in Italia</p>
+            
+            <p>Il progetto &egrave; rilasciato sotto licenza GNU/GPL Versione 3</p>
+            <p>E realizzato grazie ai <a href="https://github.com/pcm-dpc/COVID-19">dati rilasciati dalla Protezione Civile </a></p>
+            <p>E con l'utilizzo delle seguenti librerie:</p>
+            <ul>
+              <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+              <li><a href="https://jquery.com/">jQuery</a></li>
+              <li><a href="https://leafletjs.com/">Leaflet</a></li>
+              <li><a href="chartjs.org">Chart.js</a></li>
+            </ul>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="carousel" class="carousel slide" data-interval="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+
+          <div class="row">
+              <div class="col">
+                <div id="map"></div>
+              </div>
+          </div>
+          <div id="sliderContainer" class="d-flex flex-row mt-2 mb-4">
+            <div class="d-flex flex-column flex-fill">
+              <input type="range" class="custom-range" id="slider">
+              <h4 class="text-center mt-2" id="currentDate"></h4>
+            </div>
+            <div class="flex-col" style="width:20px">
+              
+            </div>
+            <div id="controlsContainer" class="flex-col d-flex justify-content-end mt-2 mb-2">
+              <button id="buttonCol" type="button" class="btn btn-primary">
+                <i id="playButton" class="fas fa-pause"></i>
+              </button>
+            </div> 
+          </div>
+
+          </div>
+          <div class="carousel-item ">
+
+          <table id="table" class="table pageResize">
+              <thead>
+                <tr>
+                  <th scope="col">Zona</th>
+                  <th scope="col">Valore</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+              </tbody>
+            </table>
+
+          </div>
+          <div class="carousel-item">
+
+            <div id="chartRow" class="row">
+              <div class="col">
+                  <div id="chartCard" class="card">
+                      <div id="chartContainer" class="card-body">
+                          <canvas id="chart"></canvas>
+                      </div>
+                  </div>
+              </div>
+           </div>  
+
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <footer id="footer" class="bg-dark text-white-50">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col"><button type="button" class="btn btn-primary" href="#carousel" role="button" data-slide="prev"><i class="fas fa-backward"></i></button></div>
+          <div class="col md-auto text-center">
+            <h4 id="pageName">Mappa</h4>
+          </div>
+          <div class="col"><button type="button" class="btn btn-primary float-right" href="#carousel" role="button" data-slide="next"><i class="fas fa-forward"></i></button></div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+    <script src="./js/map.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

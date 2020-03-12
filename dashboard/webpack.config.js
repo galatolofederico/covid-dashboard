@@ -1,5 +1,3 @@
-var path = require('path')
-var webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 const JSONMinifyPlugin = require('node-json-minify')
 

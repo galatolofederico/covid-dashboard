@@ -46,5 +46,9 @@ body{
 }
 
 #alert {
-    display: none
+    left: 0;
+    position: fixed;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: none;
 }

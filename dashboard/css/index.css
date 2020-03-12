@@ -39,6 +39,7 @@ body{
 
 #alert-container {
     margin-top:10px;
+    margin-left: auto;
     position: fixed;
     z-index: 9999;
 }

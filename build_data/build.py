@@ -34,26 +34,37 @@ def create_sequences(serie, gb, sequences, dates_rage):
 prov_df = pd.read_csv("./raw_data/dpc-covid19-ita-province.csv")
 prov_df['data'] =  pd.to_datetime(prov_df['data'])
 prov_df.sort_values(by="data")
-prov_dates_rage = pd.date_range(min(prov_df["data"]) - pd.DateOffset(1), max(prov_df["data"]), freq='D')
+
+min_date = min(prov_df["data"])
+min_date = min_date.replace(hour=0, minute=0, second=0)
+
+max_date = max(prov_df["data"])
+max_date = max_date.replace(hour=0, minute=0, second=0)
+
+prov_dates_rage = pd.date_range(min_date, max_date + pd.DateOffset(1), freq='D', closed="right")
 prov_df.groupby("sigla_provincia").apply(
      create_sequences, "sigla_provincia",
      province_sequences, prov_dates_rage
 )
-prov_dates_rage = pd.date_range(min(prov_df["data"]), max(prov_df["data"]), freq='D')
-
-
-
+prov_dates_rage = pd.date_range(min_date, max_date, freq='D', closed="right")
 # Regioni
 
 reg_df = pd.read_csv("./raw_data/dpc-covid19-ita-regioni.csv", dtype={"codice_regione": str})
 reg_df['data'] =  pd.to_datetime(reg_df['data'])
 reg_df.sort_values(by="data")
-reg_dates_rage = pd.date_range(min(reg_df["data"]) - pd.DateOffset(1), max(reg_df["data"]), freq='D')
+
+min_date = min(prov_df["data"])
+min_date = min_date.replace(hour=0, minute=0, second=0)
+
+max_date = max(prov_df["data"])
+max_date = max_date.replace(hour=0, minute=0, second=0)
+
+reg_dates_rage = pd.date_range(min_date, max_date + pd.DateOffset(1), freq='D', closed="right")
 reg_df.groupby("codice_regione").apply(
      create_sequences, "codice_regione",
      regioni_sequences, reg_dates_rage
 )
-reg_dates_rage = pd.date_range(min(reg_df["data"]), max(reg_df["data"]), freq='D')
+reg_dates_rage = pd.date_range(min_date, max_date, freq='D', closed="right")
 
 for key, data in province_sequences.items():    
     open("data/"+key+".json", "w").write(json.dumps(data))

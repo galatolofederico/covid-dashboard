@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <div id="carousel" class="carousel slide" data-interval="false">
+      <div id="carousel" class="carousel slide" data-interval="false" data-touch="false">
         <div class="carousel-inner">
           <div class="carousel-item active">
 
@@ -65,12 +65,12 @@
           <div id="sliderContainer" class="d-flex flex-row mt-2 mb-4">
             <div class="d-flex flex-column flex-fill">
               <input type="range" class="custom-range" id="slider">
-              <h4 class="text-center mt-2" id="currentDate"></h4>
+              <h4 class="text-center mt-2 swipable" id="currentDate"></h4>
             </div>
-            <div class="flex-col" style="width:20px">
+            <div class="flex-col swipable" style="width:20px">
               
             </div>
-            <div id="controlsContainer" class="flex-col d-flex justify-content-end mt-2 mb-2">
+            <div id="controlsContainer" class="flex-col d-flex justify-content-end mt-2 mb-2 swipable">
               <button id="buttonCol" type="button" class="btn btn-primary">
                 <i id="playButton" class="fas fa-pause"></i>
               </button>
@@ -78,7 +78,7 @@
           </div>
 
           </div>
-          <div class="carousel-item ">
+          <div class="carousel-item swipable">
 
           <table id="table" class="table pageResize">
               <thead>
@@ -92,7 +92,7 @@
             </table>
 
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item swipable">
 
             <div id="chartRow" class="row">
               <div class="col">
@@ -109,7 +109,7 @@
       </div>
     </div>    
 
-    <footer id="footer" class="bg-dark text-white-50">
+    <footer id="footer" class="bg-dark text-white-50 swipable">
       <div class="container">
         <div class="row align-items-center">
           <div class="col"><button type="button" class="btn btn-primary" href="#carousel" role="button" data-slide="prev"><i class="fas fa-backward"></i></button></div>

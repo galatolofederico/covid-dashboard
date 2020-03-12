@@ -312,22 +312,23 @@ function addHandlers(){
       $("#infoButton").mousedown(() => {
         $("#alert").css("display", "block")
       })
-
-      $(window).on("touchstart", function(event){
+      
+      $(".swipable").on("touchstart", function(event){
         var xClick = event.originalEvent.touches[0].pageX
         $(this).one("touchmove", function(event){
-        var xMove = event.originalEvent.touches[0].pageX
-        if( Math.floor(xClick - xMove) > 20 ){
-            $("#carousel").carousel('next')
-        }
-        else if( Math.floor(xClick - xMove) < -20 ){
-            $("#carousel").carousel('prev')
-        }
+          var xMove = event.originalEvent.touches[0].pageX
+          if( Math.floor(xClick - xMove) > 5 ){
+              $("#carousel").carousel('next')
+          }
+          else if( Math.floor(xClick - xMove) < -5 ){
+              $("#carousel").carousel('prev')
+          }
         })
-        $(window).on("touchend", function(){
+        $(".swipable").on("touchend", function(){
             $("#carousel").off("touchmove")
         })
       })
+      
 
 }
 

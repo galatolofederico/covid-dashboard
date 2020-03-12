@@ -36,9 +36,13 @@ function getMap(){
 
   var map = L.map('map', {
       center: [41.9028, 12.4964],
-      zoomSnap: 0.3,
-      zoom: 5.3,
+      zoomSnap: 0.1,
   })
+
+  map.fitBounds([
+    [46.330201, 4.480211],
+    [36.544542, 18.931975]
+  ])
 
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

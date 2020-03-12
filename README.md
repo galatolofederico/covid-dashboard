@@ -2,6 +2,9 @@
 
 Dashboard per la visualizzazione dei [dati forniti dalla Protezione Civile](https://github.com/pcm-dpc/COVID-19) relativi all'epidemia di COVID-19 in Italia.
 
+[Disponibile qui](https://covid.galatolo.me/)
+
+
 ## Utilizzo
 
 Il progetto si divide in due componenti:

@@ -1,11 +1,11 @@
-var currentlayer;
+var currentlayer
 
 function startAnimation(layers, time_ref, map){
     if(animation < 0){
         $("#playButton").removeClass("fa-play")
         $("#playButton").addClass("fa-pause")
         
-        current_time = 0;
+        current_time = 0
         map.addLayer(layers[current_time])
         currentlayer = layers[current_time]
         $("#slider").val(0)
@@ -32,8 +32,8 @@ function stopAnimation(){
 }
 
 function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
+    var hex = c.toString(16)
+    return hex.length == 1 ? "0" + hex : hex
 }
 
 function rgbToHex(rgb) {
@@ -43,12 +43,12 @@ function rgbToHex(rgb) {
 function getGradient(gradient, value){
     scale = 20
     value = Math.log(((scale-1)*value+1))/Math.log(scale)
-    var w1 = 1 - value;
-    var w2 = value;
+    var w1 = 1 - value
+    var w2 = value
     var rgb = [Math.round(gradient[0][0] * w1 + gradient[1][0] * w2),
         Math.round(gradient[0][1] * w1 + gradient[1][1] * w2),
         Math.round(gradient[0][2] * w1 + gradient[1][2] * w2)];
-    return rgbToHex(rgb);
+    return rgbToHex(rgb)
 }
 
 
@@ -69,13 +69,13 @@ function getStyle(current_sequence, gradient, max, t){
             color: 'white',
             dashArray: '1',
             fillOpacity: 0.7
-        };
+        }
       }
     return style    
 }
 
 function getMaxSequence(current_sequence){
-    var seq_max = undefined;
+    var seq_max = undefined
     for(key in current_sequence){
         if(seq_max === undefined || Math.max(...current_sequence[key]) > seq_max)
             seq_max = Math.max(...current_sequence[key])
@@ -123,8 +123,8 @@ function buildDropdown(available_sequences){
 function getJSON(file){
     return new Promise((res, rej) => {
         $.getJSON("./assets/"+file, data => {
-            if(data) res(data);
-            else rej();
+            if(data) res(data)
+            else rej()
         })
     })
 }
@@ -133,19 +133,19 @@ function addHandlers(){
     $("#buttonCol").mousedown(() => {
         if(animation < 0){
           currentlayer.resetStyle()
-          startAnimation(layers, time_ref, map);
+          startAnimation(layers, time_ref, map)
         } else {
-            stopAnimation();
+            stopAnimation()
         }
       })
   
       $("#slider").change(() => {
-        stopAnimation();
+        stopAnimation()
         currentlayer.resetStyle()
-        map.removeLayer(currentlayer);
+        map.removeLayer(currentlayer)
         current_time = Math.round(($("#slider").val()/100)*(time_ref.length - 1));
         map.addLayer(layers[current_time])
-        currentlayer = layers[current_time];
+        currentlayer = layers[current_time]
         $("#currentDate").text(time_ref[current_time])
         infoBox.reupdate()
       })
@@ -172,7 +172,7 @@ function buildTable(current_sequence){
         index = current_sequence[key].length - 1
         name = namesMap[key]
         value = current_sequence[key][index]
-        table.row.add([name, value]).draw();
+        table.row.add([name, value]).draw()
     }
 }
 
@@ -183,18 +183,18 @@ function clearChart(){
 function buildChart(time_sequence){
     var ret = []
     for(var t = 0; t < time_ref.length;t++){
-        var s = 0;
+        var s = 0
         for(key in time_sequence){
             s += time_sequence[key][t]
         }
         ret.push(s)
     }
-    var canvas = document.getElementById("chart");
-    var ctx = canvas.getContext("2d");
+    var canvas = document.getElementById("chart")
+    var ctx = canvas.getContext("2d")
 
-    var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(1, rgbToHex(current_sequence.gradient[0]));   
-    gradient.addColorStop(0, rgbToHex(current_sequence.gradient[1]));
+    var gradient = ctx.createLinearGradient(0, 0, 0, 400)
+    gradient.addColorStop(1, rgbToHex(current_sequence.gradient[0]))
+    gradient.addColorStop(0, rgbToHex(current_sequence.gradient[1]))
 
     var chartData = {
         labels: time_ref,
@@ -225,7 +225,7 @@ function buildChart(time_sequence){
     })
 
 
-    chart_margin = 30;
+    chart_margin = 30
     card_padding = $('#chartContainer').innerHeight() - $('#chartContainer').height()
     $("#chartContainer").height(
         $(window).height() - ($("#navbar").outerHeight(true) + 0.1*$(window).height() + card_padding + chart_margin + 5)

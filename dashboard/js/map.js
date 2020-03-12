@@ -1,73 +1,73 @@
 
 function getMap(){
     mapmargin = $("#navbar").outerHeight(true) + $("#sliderContainer").outerHeight(true) + 0.1*$(window).height()
-    $('#map').css("height", ($(window).height() - mapmargin));
+    $('#map').css("height", ($(window).height() - mapmargin))
 
     var map = L.map('map', {
         center: [41.9028, 12.4964],
         zoomSnap: 0.3,
         zoom: 5.3,
-    });
+    })
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(map)
 
     return map
 }
 
 
 function highlightFeature(layer) {
-    currentlayer.resetStyle();
+    currentlayer.resetStyle()
 
     layer.setStyle({
         weight: 3,
         color: '#666',
         dashArray: '',
         fillOpacity: 0.7
-    });
+    })
 
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
+        layer.bringToFront()
     }
-    infoBox.update(layer.feature.properties);
+    infoBox.update(layer.feature.properties)
 }
 
 function resetHighlight(layer) {
-    currentlayer.resetStyle();
-    infoBox.update();
+    currentlayer.resetStyle()
+    infoBox.update()
 }
 
-feature_persist = false;
+feature_persist = false
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: e => {
-            if(!feature_persist) highlightFeature(e.target);
+            if(!feature_persist) highlightFeature(e.target)
         },
         mouseout: e => {
-            if(!feature_persist) resetHighlight(e.target);
+            if(!feature_persist) resetHighlight(e.target)
         },
         click: e => {
-            stopAnimation();
-            feature_persist = true;
-            highlightFeature(e.target);
+            stopAnimation()
+            feature_persist = true
+            highlightFeature(e.target)
         }
-    });
+    })
 }
 
 
 function addBox(map){
-    infoBox = L.control();
+    infoBox = L.control()
 
     infoBox.onAdd = function (map) {
         this._div = L.DomUtil.create('div', 'info');
-        this.update();
-        return this._div;
+        this.update()
+        return this._div
     }
 
     infoBox.reupdate = function () {
         this.update(this.lastprop)
-        if(this.lastprop === undefined) return;
+        if(this.lastprop === undefined) return
         currentlayer.eachLayer(l => {
             if(this.lastprop.prov_acr) key = "prov_acr"
             else if(this.lastprop.reg_istat_code) key = "reg_istat_code"
@@ -80,7 +80,7 @@ function addBox(map){
 
     infoBox.update = function (prop) {
         infoBox.lastprop = prop
-        ret = "<h5>"+sequence+"</h5>";
+        ret = "<h5>"+sequence+"</h5>"
         if(prop){
             if(time_sequence[prop.prov_acr]){
                 key = prop.prov_acr

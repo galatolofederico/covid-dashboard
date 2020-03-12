@@ -8,14 +8,14 @@ sequence = "Contagiati"
 time_sequence = undefined
 
 animation = -1
-current_time = 0;
+current_time = 0
 
 map = undefined;
-infoBox = undefined;
+infoBox = undefined
 
-table = undefined;
+table = undefined
 
-chart = undefined;
+chart = undefined
 
 namesMap = undefined;
 

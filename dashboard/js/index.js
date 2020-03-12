@@ -16,6 +16,7 @@ current_time = 0
 map = undefined;
 infoBox = undefined
 currentlayer = undefined;
+feature_persist = false
 
 table = undefined
 
@@ -63,19 +64,18 @@ function highlightFeature(layer) {
   infoBox.update(layer.feature.properties)
 }
 
-function resetHighlight(layer) {
+function resetHighlight() {
   currentlayer.resetStyle()
   infoBox.update()
 }
 
-feature_persist = false
 function onEachFeature(feature, layer) {
   layer.on({
       mouseover: e => {
           if(!feature_persist) highlightFeature(e.target)
       },
       mouseout: e => {
-          if(!feature_persist) resetHighlight(e.target)
+          if(!feature_persist) resetHighlight()
       },
       click: e => {
           stopAnimation()
@@ -277,6 +277,8 @@ function getJSON(file){
 function addHandlers(){
     $("#buttonCol").mousedown(() => {
         if(animation < 0){
+          feature_persist = false;
+          resetHighlight();
           currentlayer.resetStyle()
           startAnimation(layers, time_ref, map)
         } else {

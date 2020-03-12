@@ -66,37 +66,37 @@ open("data/meta.json", "w").write(json.dumps(
     dict(
         sequences={
             "Contagiati": dict(
-                map="province.geojson",
+                map="maps/province.geojson",
                 sequence="totale_casi.json",
                 time_ref=prov_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[255, 252, 181], [255, 10, 10]]
             ),
             "Ospedalizzati": dict(
-                map="regioni.geojson",
+                map="maps/regioni.geojson",
                 sequence="totale_ospedalizzati.json",
                 time_ref=reg_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[186, 224, 255], [0, 140, 255]]
             ),
             "Terapia Intensiva": dict(
-                map="regioni.geojson",
+                map="maps/regioni.geojson",
                 sequence="terapia_intensiva.json",
                 time_ref=reg_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[232, 207, 255],[138, 10, 255]]
             ),
             "Tamponi": dict(
-                map="regioni.geojson",
+                map="maps/regioni.geojson",
                 sequence="tamponi.json",
                 time_ref=reg_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[255, 212, 245],[255, 15, 199]],
             ),
             "Guariti": dict(
-                map="regioni.geojson",
+                map="maps/regioni.geojson",
                 sequence="dimessi_guariti.json",
                 time_ref=reg_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[210, 255, 207],[48, 204, 20]]
             ),
             "Deceduti": dict(
-                map="regioni.geojson",
+                map="maps/regioni.geojson",
                 sequence="deceduti.json",
                 time_ref=reg_dates_rage.strftime("%d %B").tolist(),
                 gradient=[[230, 230, 230],[69, 69, 69]]

@@ -451,7 +451,7 @@ function bootstrap(){
 /* Initialization */ 
 $(document).ready(() => {
   addHandlers()
-  $.getJSON("./assets/names.json", names => {
+  $.getJSON("./assets/maps/names.json", names => {
     namesMap = names
     table = $('#table').DataTable({
       "order": [[ 1, "desc" ]],

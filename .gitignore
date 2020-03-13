@@ -1,4 +1,10 @@
 /parser/env
+/parser/data
+/parser/raw_data
+
 
 /dashboard/node_modules
+/dashboard/assets/*.json
 /dashboard/dist
+
+/dist

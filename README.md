@@ -7,7 +7,7 @@ Dashboard per la visualizzazione dei [dati forniti dalla Protezione Civile](http
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](./README.md.d/mappa.gif)  |  ![](./README.md.d/lista.gif) |  ![](./README.md.d/grafico.gif) 
 
-[Disponibile qui](https://covid.galatolo.me/)
+### [Disponibile qui](https://galatolofederico.github.io/covid-dashboard)
 
 
 ## Utilizzo
